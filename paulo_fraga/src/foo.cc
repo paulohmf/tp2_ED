@@ -1,3 +1,3 @@
-int myMergeSort(){
-	return 1;
+int bar() {
+  return 1;
 }

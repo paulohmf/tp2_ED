@@ -35,21 +35,17 @@ TMPOUT=tp2.testresult
 # CMD sao os comandos necessarios para executar a regra (por exemplo, chamar o
 # gcc)
 
-$(EXEC): main.cc listaEncadeada.o foo.o 
-	$(CC) $(CFLAGS) main.cc foo.o listaEncadeada.o -o $(EXEC)
+$(EXEC): main.cc foo.o
+	$(CC) $(CFLAGS) main.cc foo.o -o $(EXEC)
 
 foo.o: foo.cc # esse eh um exemplo, nao utilize esse tipo de nome (foo.cc, foo.h, foo.o) para seus arquivos
 	$(CC) $(CFLAGS) -c foo.cc -o foo.o
-
-listaEncadeada.o: listaEncadeada.cc
-	$(CC) $(CFLAGS) -c listaEncadeada.cc -o listaEncadeada.o
 
 test: $(EXEC)
 	@bash ../run_tests.sh $(EXEC) $(TMPOUT)
 
 clean: # remove todos os arquivos temporarios que forem gerados pela compilacao
 	rm -rf foo.o
-	rm -tf listaEncadeada.o
 
 # === OUTROS =====
 # ================

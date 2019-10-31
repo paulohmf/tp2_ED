@@ -1,45 +1,56 @@
 #include <cstdio> // em C substituir por #include <stdio.h>
 #include "foo.h"
-#include "listaEncadeada.h"
+
+
+struct visitas{
+	int tempo;
+	char *nome;
+};
 
 int main(){
-	int tempoTotal,numeroDePlanetas,tamanhoNomePlaneta;
+	int tempoTotal,numeroVisitas,tamanhoNome;
 
-	scanf("%d %d %d ",&tempoTotal,&numeroDePlanetas,&tamanhoNomePlaneta);
-	
-	listaEncadeada *planetas = new listaEncadeada();
+	scanf("%d %d %d ",&tempoTotal,&numeroVisitas,&tamanhoNome);
+
+	visitas planetas[numeroVisitas];
 
 	char letra;
 	int tempoVisita;
-	for(int i=0;i<numeroDePlanetas;i++){
+	for(int i=0;i<numeroVisitas;i++){
 
-		char *nomePlaneta = new char[tamanhoNomePlaneta];
+		char *nomePlaneta = new char[tamanhoNome];
 
 		scanf("%d ",&tempoVisita);
+		planetas[i].tempo = tempoVisita;
 
-		for(int j=0;j<tamanhoNomePlaneta;j++){
+		for(int j=0;j<tamanhoNome;j++){
 			scanf("%c",&letra);
 			nomePlaneta[j] = letra;
 
 		}
-		nomePlaneta[tamanhoNomePlaneta] = '\0';
+		nomePlaneta[tamanhoNome] = '\0';
 
-		planetas->push_front(tempoVisita,nomePlaneta);
+		planetas[i].nome = nomePlaneta;
 	}
-	planetas->imprimeLista();
 
+	for(int k=0;k<numeroVisitas;k++){
+		printf("%s - ",planetas[k].nome);
+		printf("%i\n",planetas[k].tempo);
+	}
 
-	delete planetas;
 	return 0;
 }
 
 
+
 /*
+int main() {
   int t;
   int p;
   int c;
-
   while(scanf("%d %d %d", &t, &p, &c) != EOF) {
       return 1;
   }
+  return 0;
+}
 */
