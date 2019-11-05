@@ -1,12 +1,6 @@
 #include <cstdio> // em C substituir por #include <stdio.h>
 #include "foo.h"
 
-
-struct visitas{
-	int tempo;
-	char *nome;
-};
-
 int main(){
 	int tempoTotal,numeroVisitas,tamanhoNome;
 
@@ -40,9 +34,6 @@ int main(){
 
 	return 0;
 }
-
-
-
 /*
 int main() {
   int t;
