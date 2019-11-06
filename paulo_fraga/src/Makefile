@@ -9,7 +9,7 @@
 # e eh chamada atraves do comando $(VAR)
 
 CC=g++ # compilador, troque para gcc se preferir utilizar C
-CFLAGS=-Wall -Wextra # compiler flags, troque o que quiser, exceto bibliotecas externas
+CFLAGS=-Wall -Wextra -std=c++11# compiler flags, troque o que quiser, exceto bibliotecas externas
 EXEC=./tp2 # nome do executavel que sera gerado, nao troque
 TMPOUT=tp2.testresult
 

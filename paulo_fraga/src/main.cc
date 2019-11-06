@@ -31,40 +31,52 @@ int main(){
 
 		planetas[i].nome = nomePlaneta;
 	}
-	printf("VETOR INICIAL\n");
-	for(int k=0;k<numeroVisitas;k++){
-		printf("%s - ",planetas[k].nome);
-		printf("%i\n",planetas[k].tempo);
-	}
-
-	/*
-	printf("MERGESORT\n");
 	myMergeSort(planetas,0,numeroVisitas-1);
-	*/
-	/*
-	printf("RADIX\n");
-	radix(planetas,maiorLetra,numeroVisitas,tamanhoNome);
-	*/
 
-	for(int k=0;k<numeroVisitas;k++){
-		printf("%s - ",planetas[k].nome);
-		printf("%i\n",planetas[k].tempo);
+	int ultimoVisitado = 0;
+	int visitasMes = -1;
+	int mez = 1;
+	int soma = 0;
+	bool flag = false;
+
+	for(int x=0;x<numeroVisitas;x++){
+
+		while(soma<tempoTotal && x<numeroVisitas){
+			visitasMes++;
+			soma+=planetas[x].tempo;
+			x++;
+			flag = true;
+		}
+		if(soma>tempoTotal){
+			x--;
+			visitasMes--;
+		}
+		soma = 0;
+
+		visitas *mes = new visitas[visitasMes+2];
+
+		for(int i=ultimoVisitado,k=0;i<=ultimoVisitado+visitasMes;i++,k++){
+			mes[k] = planetas[i];
+		}
+		ultimoVisitado = x;
+
+		radix(mes,maiorLetra,visitasMes+1,tamanhoNome);
+
+		for(int j=0;j<=visitasMes;j++){
+			printf("%i %s %i\n",mez,mes[j].nome,mes[j].tempo);
+		}
+		visitasMes = -1;
+		mez++;
+
+		delete mes;
+
+		if(flag){
+			x--;
+			flag = false;
+		}
 	}
-
 	for(int k=0;k<numeroVisitas;k++){
 		delete planetas[k].nome;
 	}
 	return 0;
 }
-
-/*
-int main() {
-  int t;
-  int p;
-  int c;
-  while(scanf("%d %d %d", &t, &p, &c) != EOF) {
-      return 1;
-  }
-  return 0;
-}
-*/
