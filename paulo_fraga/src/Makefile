@@ -35,17 +35,21 @@ TMPOUT=tp2.testresult
 # CMD sao os comandos necessarios para executar a regra (por exemplo, chamar o
 # gcc)
 
-$(EXEC): main.cc foo.o
-	$(CC) $(CFLAGS) main.cc foo.o -o $(EXEC)
+$(EXEC): main.cc merge.o radix.o  
+	$(CC) $(CFLAGS) main.cc merge.o radix.o -o $(EXEC)
 
-foo.o: foo.cc # esse eh um exemplo, nao utilize esse tipo de nome (foo.cc, foo.h, foo.o) para seus arquivos
-	$(CC) $(CFLAGS) -c foo.cc -o foo.o
+merge.o: merge.cc
+	$(CC) $(CFLAGS) -c merge.cc -o merge.o
+
+radix.o: radix.cc
+	$(CC) $(CFLAGS) -c radix.cc -o radix.o
 
 test: $(EXEC)
 	@bash ../run_tests.sh $(EXEC) $(TMPOUT)
 
 clean: # remove todos os arquivos temporarios que forem gerados pela compilacao
-	rm -rf foo.o
+	rm -rf merge.o
+	rm -rf radix.o
 
 # === OUTROS =====
 # ================

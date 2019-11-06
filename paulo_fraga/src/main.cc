@@ -1,5 +1,6 @@
 #include <cstdio> // em C substituir por #include <stdio.h>
-#include "foo.h"
+#include "radix.h"
+#include "merge.h"
 
 int main(){
 	int tempoTotal,numeroVisitas,tamanhoNome;
