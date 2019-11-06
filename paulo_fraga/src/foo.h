@@ -9,4 +9,6 @@ struct visitas{
 void myMergeSort(visitas *valores, int esq, int dir);
 void junta(visitas *valores,int esq,int particao,int dir);
 
+void radix(visitas *planetas, int maiorLetra, int tamanhoLista, int tamanhoNome);
+
 #endif

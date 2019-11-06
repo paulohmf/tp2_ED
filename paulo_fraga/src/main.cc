@@ -10,6 +10,7 @@ int main(){
 
 	char letra;
 	int tempoVisita;
+	char maiorLetra = 'a';
 	for(int i=0;i<numeroVisitas;i++){
 
 		char *nomePlaneta = new char[tamanhoNome];
@@ -21,19 +22,41 @@ int main(){
 			scanf("%c",&letra);
 			nomePlaneta[j] = letra;
 
+			if(letra > maiorLetra){
+				maiorLetra = letra;
+			}
+
 		}
 		nomePlaneta[tamanhoNome] = '\0';
 
 		planetas[i].nome = nomePlaneta;
 	}
+	printf("VETOR INICIAL\n");
+	for(int k=0;k<numeroVisitas;k++){
+		printf("%s - ",planetas[k].nome);
+		printf("%i\n",planetas[k].tempo);
+	}
+
+	/*
+	printf("MERGESORT\n");
+	myMergeSort(planetas,0,numeroVisitas-1);
+	*/
+	/*
+	printf("RADIX\n");
+	radix(planetas,maiorLetra,numeroVisitas,tamanhoNome);
+	*/
 
 	for(int k=0;k<numeroVisitas;k++){
 		printf("%s - ",planetas[k].nome);
 		printf("%i\n",planetas[k].tempo);
 	}
 
+	for(int k=0;k<numeroVisitas;k++){
+		delete planetas[k].nome;
+	}
 	return 0;
 }
+
 /*
 int main() {
   int t;

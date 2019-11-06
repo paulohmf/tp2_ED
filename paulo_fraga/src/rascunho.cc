@@ -84,3 +84,56 @@ int main(){
 
 	return 0;
 }
+
+
+
+/*#######################################################*/
+
+
+struct contadores{
+	int contador = 0;
+	visitas *visita = 0;
+};
+
+void countingSort(visitas *planetas, int maiorLetra, int tamanhoLista, int posicao){
+	contadores *count = new contadores [maiorLetra-96];
+
+	for(int k=0;k<tamanhoLista;k++){
+		int letra = planetas[k].nome[posicao]-97;
+		//printf("%c - letra : %i int\n", planetas[k].nome[posicao],letra);
+		count[letra].contador++;
+		
+		int contador = count[letra].contador;
+		visitas *atualizarPlanetas = new visitas[contador];
+
+		for(int x=0; x<contador-1;x++){
+			atualizarPlanetas[x] = count[letra].visita[x];
+		}
+		atualizarPlanetas[contador-1] = planetas[k];
+
+		delete count[letra].visita;
+		count[letra].visita = atualizarPlanetas;
+	}
+
+	int aux=0;
+	for(int i=0;i<maiorLetra-96;i++){
+		int contador = count[i].contador;
+		//printf("%c - %i\n",('a'+i),contador);
+		//printf("VISITAS SALVAS\n");
+		for(int x=0;x<contador;x++){
+			//printf("%i - ",count[i].visita[x].tempo);
+			//printf("%s\n",count[i].visita[x].nome);
+			planetas[aux] = count[i].visita[x];
+			aux++;
+		}
+	}
+
+	delete count;
+}
+
+void radix(visitas *planetas, int maiorLetra, int tamanhoLista, int tamanhoNome){
+	for(int i=tamanhoNome-1;i>=0;i--){
+		countingSort(planetas,maiorLetra,tamanhoLista,i);
+	}
+}
+
