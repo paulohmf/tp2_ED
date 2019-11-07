@@ -38,7 +38,7 @@ int main(){
 	int visitasMes = -1;
 	int mez = 1;
 	int soma = 0;
-	bool flag = false;
+	bool flag = false;//Essa flag é necessária para evitar o duplo incremento do x, promovido pelo o while dentro do for
 
 	for(int x=0;x<numeroVisitas;x++){
 
@@ -46,7 +46,7 @@ int main(){
 			visitasMes++;
 			soma+=planetas[x].tempo;
 			x++;
-			flag = true;
+			flag = true;//evitar duplo incremento do x
 		}
 		if(soma>tempoTotal){
 			x--;
@@ -71,7 +71,7 @@ int main(){
 
 		delete mes;
 
-		if(flag){
+		if(flag){//evitar duplo incremento do x
 			x--;
 			flag = false;
 		}

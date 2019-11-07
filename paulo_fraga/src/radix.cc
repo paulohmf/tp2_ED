@@ -9,7 +9,7 @@ struct contadores{
 };
 
 void countingSort(visitas *planetas, int maiorLetra, int tamanhoLista, int posicao){
-	contadores *count = new contadores [maiorLetra-96];
+	contadores *count = new contadores [maiorLetra-96];// char a = int 97
 
 	for(int k=0;k<tamanhoLista;k++){
 		int letra = planetas[k].nome[posicao]-97;
