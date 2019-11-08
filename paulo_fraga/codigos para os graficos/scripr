@@ -1,0 +1,5 @@
+TIMEFORMAT="%U"
+for i in {10..150000..75}; do
+	echo -n "$i;"
+   ./rand $i | { time ./tp2 > /dev/null; }
+done &> tempos.csv
